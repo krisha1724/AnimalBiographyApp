@@ -1,0 +1,87 @@
+@model AnimalBiographyApp.Models.Animal
+
+@{
+    ViewData["Title"] = "Edit " + Model.Name;
+}
+
+<div class="container mt-4">
+    <h1>Edit @Model.Name</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="DateAdded" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Species" class="control-label"></label>
+                    <input asp-for="Species" class="form-control" />
+                    <span asp-validation-for="Species" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Habitat" class="control-label"></label>
+                    <input asp-for="Habitat" class="form-control" />
+                    <span asp-validation-for="Habitat" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Description" class="control-label"></label>
+                    <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="ImageUrl" class="control-label"></label>
+                    <input asp-for="ImageUrl" class="form-control" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Diet" class="control-label"></label>
+                    <input asp-for="Diet" class="form-control" />
+                    <span asp-validation-for="Diet" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="ConservationStatus" class="control-label"></label>
+                    <select asp-for="ConservationStatus" class="form-control">
+                        <option value="">Select Status</option>
+                        <option value="Least Concern">Least Concern</option>
+                        <option value="Near Threatened">Near Threatened</option>
+                        <option value="Vulnerable">Vulnerable</option>
+                        <option value="Endangered">Endangered</option>
+                        <option value="Critically Endangered">Critically Endangered</option>
+                        <option value="Extinct in the Wild">Extinct in the Wild</option>
+                        <option value="Extinct">Extinct</option>
+                    </select>
+                    <span asp-validation-for="ConservationStatus" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-4">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="@Model.ImageUrl" class="card-img-top" alt="@Model.Name">
+                <div class="card-body">
+                    <h5 class="card-title">Current Image</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
